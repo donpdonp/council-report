@@ -46,11 +46,10 @@ doc.css('div.wysiwyg font table tbody td').each do |row|
   end
 
   if agenda_date
-    row.css('p').each do |ar|
-      if ar.css('strong>a')[0]
-        bill = parse_bill(ar, agenda_date)
-        items << bill
-      end
+    p = row.css('p').first
+    if p.css('strong>a')[0]
+      bill = parse_bill(p, agenda_date)
+      items << bill
     end
   end
 end
