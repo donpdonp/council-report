@@ -17,5 +17,5 @@ and upload the resutls as JSON to s3.
 
 ```
 bundle install
-dotenv script/process-upcoming-agenda-items
+dotenv script/process-upcoming-agenda
 ```
