@@ -47,7 +47,7 @@ doc.css('div.wysiwyg font table tbody td').each do |row|
 
   if agenda_date
     p = row.css('p').first
-    if p.css('strong>a')[0]
+    if p.css('strong>a').length > 0 || p.css('a>strong').length > 0
       bill = parse_bill(p, agenda_date)
       items << bill
     end
