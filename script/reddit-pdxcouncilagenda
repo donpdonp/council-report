@@ -56,14 +56,14 @@ puts "LIVE POST" if do_post
 
 # posts
 puts "loading reddit posts"
-posts = HTTParty.get("http://www.reddit.com/r/pdxcouncilagenda.json?limit=#{@reddit['limit']}").parsed_response['data']['children']
-puts "loaded #{posts.length} posts"
+posts = HTTParty.get("http://www.reddit.com/r/pdxcouncilagenda/new.json?limit=#{@reddit['limit']}").parsed_response['data']['children']
+puts "loaded #{posts.length} reddit posts"
 posts.each do |p| 
   match = p['data']['title'].match(/\[(\d+)\]/)
   p['data']['agenda_number'] = match.captures.first if match
 end
 story_ids = posts.map{|p|p['data']['agenda_number']}.compact
-puts "#{story_ids.size} story ids #{story_ids.sort}"
+puts "#{story_ids.size} story ids #{story_ids.sort_by{|a| a.to_i}.reverse}"
 
 # agenda
 puts "loading council agenda"
